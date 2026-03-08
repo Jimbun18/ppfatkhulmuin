@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', [PublicController::class, 'index'])->name('welcome');
 Route::get('/berita', [PublicController::class, 'semuaBerita'])->name('berita.index');
 Route::get('/berita/{slug}', [PublicController::class, 'showBerita'])->name('berita.show');
+Route::get('/kabar-pesantren/{id}', [\App\Http\Controllers\PublicController::class, 'showBerita'])->name('berita.show');
+Route::get('/program/{id}', [\App\Http\Controllers\PublicController::class, 'showProgram'])->name('program.show');
 // Halaman Profil (Statis)
 Route::get('/profil/sejarah', [PublicController::class, 'sejarah'])->name('profil.sejarah');
 Route::view('/profil/visi-misi', 'pages.visimisi')->name('profil.visimisi');
@@ -62,7 +64,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     // Route Baru untuk Program & Jadwal
     Route::resource('programs', ProgramController::class);
     Route::resource('schedules', ScheduleController::class);
-    Route::get('/program/{id}', [\App\Http\Controllers\PublicController::class, 'showProgram'])->name('program.show');
+    
     // Pastikan Teacher juga sudah ada
     
 });

@@ -19,7 +19,7 @@ class PublicController extends Controller
     {
         // Data Slider & Berita
         $sliders = Slider::where('is_active', true)->take(3)->get();
-        $news = Post::where('category', 'berita')->latest()->take(3)->get();
+        $news = Post::latest()->take(3)->get();
         
         // Data CMS Profile
         $identitas = Section::where('key', 'identitas')->first();
@@ -84,4 +84,12 @@ class PublicController extends Controller
         // Kirimkan datanya ke halaman 'pages.donasi'
         return view('pages.donasi', compact('identitas', 'rekening_1', 'rekening_2'));
     }
+    // FUNGSI UNTUK BACA DETAIL BERITA
+public function showBerita($id)
+{
+    $post = \App\Models\Post::findOrFail($id);
+    $identitas = \App\Models\Section::where('key', 'identitas')->first();
+
+    return view('pages.berita', compact('post', 'identitas'));
+}
 }

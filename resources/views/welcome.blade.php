@@ -379,6 +379,11 @@
                         </div>
                         <h5 class="fw-bold text-dark mb-3">{{ Str::limit($post->title, 50) }}</h5>
                         <p class="text-muted small">{{ Str::limit(strip_tags($post->content), 100) }}</p>
+                        <div class="mt-4 pt-3 border-top">
+                <a href="{{ route('berita.show', $post->id) }}" class="btn btn-success rounded-pill px-4 fw-bold">
+                    Lihat Detail <i class="fas fa-arrow-right ms-2"></i>
+                </a>
+            </div>
                     </div>
                 </div>
             </div>
